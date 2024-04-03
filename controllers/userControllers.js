@@ -12,7 +12,7 @@ router.post('/users', async (req, res) => {
   // 4. Handle errors: Respond with appropriate error messages and status codes
     try{
       const data= await User.create(req.body);
-      res.status(201).send({message: "User created", data})
+      res.status(201).send({message: "User created", user:data})
       // res.status(201).send(data)
 
     }catch(err){
@@ -30,7 +30,7 @@ router.get('/users/:id', async (req, res) => {
   try{
     const data= await User.findById(req.params.id);
     if(data){
-      res.status(200).send({message: "Profile data", data})
+      res.status(200).send({message: "Profile data", user:data})
       // res.status(200).send(data)
 
     }
@@ -55,7 +55,7 @@ router.patch('/users/:id', async (req, res) => {
     const data= await User.findByIdAndUpdate(req.params.id,req.body,{new:true});
     if(data){
       console.log(data)
-      res.status(200).send({message: "User updated", data})
+      res.status(200).send({message: "User updated", user:data})
       // res.status(200).send(data)
 
     }
@@ -78,7 +78,7 @@ router.delete('/users/:id', async (req, res) => {
   try{
     const data= await User.findByIdAndDelete(req.params.id);
     if(data){
-      res.status(200).send({message: "User deleted", data})
+      res.status(200).send({message: "User deleted", use:data})
     }
     else
     {
